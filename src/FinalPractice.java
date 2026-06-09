@@ -16,9 +16,70 @@ public class FinalPractice {
      * @return the sum of the values at odd indexes
      */
     public static int oddIndexSum(ListNode head) {
-        // TODO: implement this AND MAKE MORE UNIT TESTS FOR IT
-        return -1;
+        if (head == null) {
+            return 0;
+        }
+
+        boolean indexEven = true;
+        int sum = 0;
+
+        while (head.next != null) {
+            if (indexEven == true) {
+                head = head.next;
+                indexEven = false;
+            }
+            if (indexEven == false) {
+                sum += head.data;
+                head = head.next;
+                indexEven = true;
+            }
+        }
+        return sum;
     }
 
-    // TODO: implement the rest of the study guide AND MAKE GOOD UNIT TESTS
+    /**
+    Given a reference to the head of a linked list, 
+    return the largest of only the last 3 values of the list.
+    Example:
+    Linked List:
+    7 -> 3 -> 19 -> 21 -> 14 -> 33 -> 8 -> 26 -> 11 -> 5
+    Expected Answer: 26
+    Last 3 values are: 26  11  5, the largest of which is 26
+    **/
+    public static int bigLastThree(ListNode head) {
+        int big = Integer.MIN_VALUE;
+
+        if (head == null) {
+            return big;
+        }
+
+        ListNode one = head;
+        ListNode two = head;
+        ListNode three = head;
+
+        if (two == head && head.next != null) {
+            two = head.next;
+        }
+        if (three == head && head.next.next != null) {
+            three = head.next.next;
+        }
+
+        while (three.next != null) {
+            one = one.next;
+            two = two.next;
+            three = three.next;
+        }
+
+        if (one.data >= two.data && one.data >= three.data) {
+            big = one.data;
+        }
+        if (two.data >= one.data && two.data >= three.data) {
+            big = two.data;
+        }
+        if (three.data >= one.data && three.data >= two.data) {
+            big = three.data;
+        }
+        
+        return big;        
+    }
 }
