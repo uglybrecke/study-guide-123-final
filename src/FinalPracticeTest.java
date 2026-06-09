@@ -1,6 +1,8 @@
 import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.Test;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FinalPracticeTest {
 
@@ -174,7 +176,58 @@ public class FinalPracticeTest {
         int actual = FinalPractice.oddBranchSum(root);
 
         assertEquals(-26, actual);
-    }    
+    }
+    
+    //test nodemapcount
+    @Test
+    void testNodeMapCount_genericList() {
+        ListNode list = new ListNode(4);
+        list.next = new ListNode(8);
+        list.next.next = new ListNode(15);
+        list.next.next.next = new ListNode(16);
+        list.next.next.next.next = new ListNode(4);
+        list.next.next.next.next.next = new ListNode(8);
+        list.next.next.next.next.next.next = new ListNode(4);
+
+        Map<Integer, Integer> actual = FinalPractice.nodeMapCount(list);
+
+        //had to ask chat GPT to get this to work, assertEquals(3, actual.get(4)); wasn't working
+        assertEquals(Integer.valueOf(3), actual.get(4));
+        assertEquals(Integer.valueOf(2), actual.get(8));
+        assertEquals(Integer.valueOf(1), actual.get(15));
+        assertEquals(Integer.valueOf(1), actual.get(16));
+    }
+
+    @Test
+    void testNodeMapCount_null() {
+        ListNode list = null;
+
+        Map<Integer, Integer> actual = FinalPractice.nodeMapCount(list);
+
+        //had to ask chat GPT to get this to work
+        assertTrue(actual.isEmpty());
+    }
+
+    @Test
+    void testNodeMapCount_oneNode() {
+        ListNode list = new ListNode(42);
+
+        Map<Integer, Integer> actual = FinalPractice.nodeMapCount(list);
+
+        assertEquals(Integer.valueOf(1), actual.get(42));
+    }
+
+    @Test
+    void testNodeMapCount_allSame() {
+        ListNode list = new ListNode(7);
+        list.next = new ListNode(7);
+        list.next.next = new ListNode(7);
+        list.next.next.next = new ListNode(7);
+
+        Map<Integer, Integer> actual = FinalPractice.nodeMapCount(list);
+
+        assertEquals(Integer.valueOf(4), actual.get(7));
+    }
 
 }
 
