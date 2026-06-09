@@ -102,6 +102,21 @@ public class FinalPractice {
      * The sum of the even leaf nodes is 8+16+22 = 46
      */
     public static int evenLeafSum(TreeNode root) {
-        return -1;
+        int sum = 0;
+        if (root == null) {
+            return sum;
+        }
+        //is this a leaf
+        if (root.left == null && root.right == null) {
+            //is it even
+            if (root.data % 2 == 0) {
+                sum += root.data;
+            }
+        }
+
+        sum += evenLeafSum(root.left);
+        sum += evenLeafSum(root.right);
+        
+        return sum;
     }
 }
