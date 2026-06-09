@@ -66,6 +66,8 @@ public class FinalPracticeTest {
         assertEquals(15, actual);
     }
 
+    //evenLeafSum tests
+
     @Test
     void testEvenLeafSum_genericTree() {
         TreeNode root = new TreeNode(4);
@@ -82,6 +84,38 @@ public class FinalPracticeTest {
         int actual = FinalPractice.evenLeafSum(root);
 
         assertEquals(58, actual);
+    }
+
+    @Test
+    void testEvenLeafSum_null() {
+        TreeNode root = null;
+        int actual = FinalPractice.evenLeafSum(root);
+        assertEquals(0, actual);
+    }
+
+    @Test
+    void testEvenLeafSum_oneNode() {
+        TreeNode root = new TreeNode(8);
+        int actual = FinalPractice.evenLeafSum(root);
+        assertEquals(8, actual);
+    }
+
+    @Test
+    void testEvenLeafSum_allNegative() {
+        TreeNode root = new TreeNode(-4);
+
+        root.left = new TreeNode(-8);
+        root.right = new TreeNode(-15);
+
+        root.left.left = new TreeNode(-16);
+        root.left.right = new TreeNode(-23);
+
+        root.right.left = new TreeNode(-11);
+        root.right.right = new TreeNode(-42);
+
+        int actual = FinalPractice.evenLeafSum(root);
+
+        assertEquals(-58, actual);
     }
 
 }
