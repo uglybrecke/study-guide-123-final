@@ -141,7 +141,7 @@ public class FinalPractice {
      * 
      */
 
-    public static oddBranchSum(TreeNode root) {
+    public static int oddBranchSum(TreeNode root) {
         int sum = 0;
         if (root == null) {
             return sum;

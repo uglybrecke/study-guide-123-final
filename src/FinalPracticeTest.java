@@ -118,6 +118,64 @@ public class FinalPracticeTest {
         assertEquals(-58, actual);
     }
 
+    //oddBranchSum tests
+
+    @Test
+    void testOddBranchSum_genericTree() {
+        TreeNode root = new TreeNode(4);
+
+        root.left = new TreeNode(8);
+        root.right = new TreeNode(15);
+
+        root.left.left = new TreeNode(16);
+        root.left.right = new TreeNode(23);
+
+        root.right.left = new TreeNode(11);
+        root.right.right = new TreeNode(42);
+
+        int actual = FinalPractice.oddBranchSum(root);
+
+        assertEquals(15, actual);
+    }
+
+    @Test
+    void testOddBranchSum_null() {
+        TreeNode root = null;
+
+        int actual = FinalPractice.oddBranchSum(root);
+
+        assertEquals(0, actual);
+    }
+
+    @Test
+    void testOddBranchSum_oneNode() {
+        TreeNode root = new TreeNode(15);
+
+        int actual = FinalPractice.oddBranchSum(root);
+
+        assertEquals(0, actual);
+    }
+
+    @Test
+    void testOddBranchSum_allNegative() {
+        TreeNode root = new TreeNode(-4);
+
+        root.left = new TreeNode(-8);
+        root.right = new TreeNode(-15);
+
+        root.left.left = new TreeNode(-16);
+        root.left.right = new TreeNode(-23);
+
+        root.right.left = new TreeNode(-11);
+        root.right.right = new TreeNode(-42);
+
+        root.right.left.left = new TreeNode(-9);
+
+        int actual = FinalPractice.oddBranchSum(root);
+
+        assertEquals(-26, actual);
+    }    
+
 }
 
 
